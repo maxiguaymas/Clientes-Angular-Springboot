@@ -1,0 +1,57 @@
+<div class="card bg-dark text-white">
+    <div class="card-header">
+        <h2 *ngIf="cliente.id == 0">Crear Cliente</h2>
+        <h2 *ngIf="cliente.id != 0">Editar Cliente</h2>
+    </div>
+
+    <div class="card-body">
+
+        <form #formCliente="ngForm">
+            <div class="input-group mb-3"> 
+                <label for="nombre" class="input-group-text col-2">Nombre</label>
+                <div class="col-5">
+                    <input type="text" name="nombre" id="nombre" class="form-control" [(ngModel)]="cliente.nombre" #nombre="ngModel" required>
+                </div>
+            </div>
+            <div class="alert alert-danger" *ngIf="!nombre.valid && nombre.touched" style="width: 50%;">
+                <span>
+                    El campo no puede estar vacio.
+                </span>
+            </div>
+
+            <div class="input-group mb-3"> 
+                <label for="apellido" class="input-group-text col-2">Apellido</label>
+                <div class="col-5">
+                    <input type="text" name="apellido" id="apellido" class="form-control" [(ngModel)]="cliente.apellido" #apellido="ngModel" required>
+                </div>
+            </div>
+            <div class="alert alert-danger" *ngIf="!apellido.valid && apellido.touched" style="width: 50%;">
+                <span>
+                    El campo no puede estar vacio.
+                </span>
+            </div>
+
+            <div class="input-group mb-3"> 
+                <label for="email" class="input-group-text col-2">Email</label>
+                <div class="col-5">
+                    <input type="email" name="email" id="email" class="form-control" [(ngModel)]="cliente.email" #email="ngModel" required>
+                </div>      
+            </div>
+            <div class="alert alert-danger" *ngIf="!email.valid && email.touched" style="width: 50%;">
+                <span>
+                    El campo no puede estar vacio.
+                </span>
+            </div>
+
+            <div class="input-group mb-3" *ngIf="cliente.id == 0"> 
+                <input (click)="create()" class="btn btn-primary" type="submit" value="Crear Cliente" [disabled]="!formCliente.valid">
+            </div>
+
+            <div class="input-group mb-3" *ngIf="cliente.id != 0"> 
+                <input (click)="update()" class="btn btn-primary" type="submit" value="Editar Cliente" [disabled]="!formCliente.valid">
+            </div>
+
+        </form>
+
+    </div>
+</div>

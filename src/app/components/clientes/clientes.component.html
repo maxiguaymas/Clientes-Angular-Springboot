@@ -1,0 +1,31 @@
+<div class="card border-primary mb-3">
+    <div class="card-header">Clientes</div>
+    <div class="card-body text-primary">
+      <h5 class="card-title">Listado de clientes</h5>
+      <div *ngIf="clientes.length == 0" class="alert alert-info">No hay clientes en la base de datos</div>
+      <table class="table table-bordered table-striped" *ngIf="clientes.length > 0">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Fecha</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cliente of clientes">
+               <td>{{cliente.id}}</td>
+               <td>{{cliente.nombre}}</td>
+               <td>{{cliente.apellido}}</td>
+               <td>{{cliente.email}}</td>
+               <td>{{cliente.createAt | date}}</td>
+               <td><a class="btn btn-primary" [routerLink]="['/clientes/crear/' + cliente.id]">Editar</a></td>
+               <td><a class="btn btn-primary" (click)="delete(cliente)">Eliminar</a></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
